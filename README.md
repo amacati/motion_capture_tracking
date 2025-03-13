@@ -28,7 +28,7 @@ To build from source, clone the latest version from this repository into your RO
 
 ```
 cd ros_ws/src
-git clone --recurse-submodules https://github.com/IMRCLab/motion_capture_tracking
+git clone --recurse-submodules https://github.com/niklasschlueter/motion_capture_tracking
 cd ../
 colcon build
 ```
