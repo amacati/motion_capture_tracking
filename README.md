@@ -30,7 +30,7 @@ To build from source, clone the latest version from this repository into your RO
 cd ros_ws/src
 git clone --recurse-submodules https://github.com/niklasschlueter/motion_capture_tracking
 cd ../
-colcon build
+colcon build --cmake-args -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 ```
 
 ## Usage
