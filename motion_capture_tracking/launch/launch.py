@@ -3,6 +3,11 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
+# Since motion_capture_tracking might be running on multiple PCs simultaneously,
+# the same /tf topics get published multiple times to the network. This is
+# unintended behavior. Setting it to LOCALHOST will block publishing to the
+# network.
+# Note: All ros nodes started after this line will also only publish locally!
 os.environ["ROS_AUTOMATIC_DISCOVERY_RANGE"] = "LOCALHOST"
 
 
