@@ -47,7 +47,8 @@ int main(int argc, char **argv) {
     publish_poses_for_clean.reserve(publish_poses_for.size());
     RCLCPP_INFO(node->get_logger(), "Publish stamped poses for the following targets:");
     for (const auto &target: publish_poses_for) {
-      if (const auto pos = target.find(':') != std::string::npos) {
+      const size_t pos = target.find(':');
+      if (pos != std::string::npos) {
         const auto target_name = target.substr(0, pos);
         const auto target_topic = target.substr(pos + 1);
         map_target_topic_name.emplace(
@@ -90,10 +91,11 @@ int main(int argc, char **argv) {
         topic = map_target_topic_name.at(name);
       else
         topic = "stamped_pose_" + name;
+      auto pub = node->create_publisher<geometry_msgs::msg::PoseStamped>(topic,
+                                                                rclcpp::SystemDefaultsQoS());
       map_target_pose_publishers.emplace(
         name,
-        node->create_publisher<geometry_msgs::msg::PoseStamped>(topic,
-                                                                rclcpp::SystemDefaultsQoS()));
+        std::move(pub));
     }
   };
 
@@ -112,7 +114,7 @@ int main(int argc, char **argv) {
     pose.pose.orientation.y = rigidBody.rotation().y();
     pose.pose.orientation.z = rigidBody.rotation().z();
     pose.pose.orientation.w = rigidBody.rotation().w();
-
+    std::cout << "publishing " << name << std::endl;
     map_target_pose_publishers.at(name)->publish(pose);
   };
 
