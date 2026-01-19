@@ -114,7 +114,6 @@ int main(int argc, char **argv) {
     pose.pose.orientation.y = rigidBody.rotation().y();
     pose.pose.orientation.z = rigidBody.rotation().z();
     pose.pose.orientation.w = rigidBody.rotation().w();
-    std::cout << "publishing " << name << std::endl;
     map_target_pose_publishers.at(name)->publish(pose);
   };
 
