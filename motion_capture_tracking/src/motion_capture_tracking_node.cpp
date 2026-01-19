@@ -21,10 +21,11 @@ int main(int argc, char **argv) {
   node->declare_parameter<bool>("publish_stamped_poses", false);
   node->declare_parameter<bool>("use_host_time", true);
 
+
   std::vector<std::string> publish_poses_for; // list from ros param that contains topic assignment
   std::vector<std::string> publish_poses_for_clean;  // clean list that only contains the target names
   std::unordered_map<std::string, std::string> map_target_topic_name;
-  node->declare_parameter<std::vector<std::string> >("published_stamped_poses_for", publish_poses_for);
+  node->declare_parameter<std::vector<std::string> >("publish_stamped_poses_for", publish_poses_for);
 
   const std::string motionCaptureType = node->get_parameter("type").as_string();
   RCLCPP_INFO_STREAM(node->get_logger(), "motion capture type: " << motionCaptureType);
