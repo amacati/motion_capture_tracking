@@ -7,6 +7,8 @@
 
     use_host_time: true
     publish_stamped_poses: true
+    broadcast_tf: true
+    update_rate: 240
     # the list of to-be-published stamped poses have two formats:
     # - if each string contains ':', then the first part is the target name defined in the MoCap workspace, the second
     #   part is the wished topic name
