@@ -7,11 +7,14 @@
 
     use_host_time: true
     publish_stamped_poses: true
-    broadcast_tf: true
-    update_rate: 240.
+    broadcast_tf: false
+    update_rate: 50.
     # the list of to-be-published stamped poses have two formats:
     # - if each string contains ':', then the first part is the target name defined in the MoCap workspace, the second
     #   part is the wished topic name
     # - if no ':', we then publish the default topic names as "stamped_pose_<target name>"
-    publish_stamped_poses_for: ["drone", "obstacle1"]
+    publish_stamped_poses_for: ["hb1:/mavros/vision_pose/pose", "gate2:/obstacle/gate2"]
+
+    
+
 
